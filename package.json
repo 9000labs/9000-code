@@ -1,0 +1,86 @@
+{
+  "name": "9000-code",
+  "version": "0.1.0",
+  "description": "9000 Code - Desktop environment for Claude Code CLI",
+  "main": "dist/main/main/index.js",
+  "homepage": "https://github.com/9000labs/9000-code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/9000labs/9000-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/9000labs/9000-code/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:electron": "concurrently \"npm run dev\" \"wait-on http://localhost:9876 && electron .\"",
+    "build": "tsc -p tsconfig.node.json && vite build",
+    "build:electron": "npm run build && electron-builder",
+    "build:main": "tsc -p tsconfig.node.json",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx",
+    "clean": "rimraf dist release",
+    "rebuild": "electron-rebuild -f -w @lydell/node-pty",
+    "postinstall": "electron-rebuild -f -w @lydell/node-pty",
+    "icons": "node scripts/generateIcons.js"
+  },
+  "keywords": [
+    "claude",
+    "cli",
+    "electron",
+    "terminal",
+    "developer-tools",
+    "ai",
+    "coding-assistant"
+  ],
+  "author": {
+    "name": "9000labs",
+    "email": "contact@9000labs.com",
+    "url": "https://9000labs.com"
+  },
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@lydell/node-pty": "^1.2.0-beta.3",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "@xterm/xterm": "^5.5.0",
+    "clsx": "^2.0.0",
+    "cors": "^2.8.5",
+    "electron-store": "^8.1.0",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "lucide-react": "^0.303.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "socket.io": "^4.8.3",
+    "tailwind-merge": "^2.2.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "electron-rebuild": "^3.2.9",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "extends": "electron-builder.yml"
+  }
+}

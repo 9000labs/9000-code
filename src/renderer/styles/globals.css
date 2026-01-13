@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}
+
+/* xterm.js customization */
+.xterm {
+  padding: 8px;
+}
+
+.xterm-viewport {
+  overflow-y: auto !important;
+}
+
+/* Panel resize handle */
+.resize-handle {
+  @apply w-1 bg-claude-border hover:bg-claude-accent cursor-col-resize transition-colors;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(217, 119, 6, 0.3);
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid #d97706;
+  outline-offset: 2px;
+}
+
+/* Transitions */
+.transition-panel {
+  transition: width 150ms ease-out;
+}
+
+/* Button base */
+.btn {
+  @apply px-3 py-1.5 rounded-md transition-colors font-medium text-sm;
+}
+
+.btn-primary {
+  @apply bg-claude-accent text-white hover:bg-claude-accent-hover;
+}
+
+.btn-secondary {
+  @apply bg-claude-surface text-claude-text border border-claude-border hover:bg-claude-border;
+}
+
+/* Card */
+.card {
+  @apply bg-claude-surface border border-claude-border rounded-lg;
+}
+
+/* Input */
+.input {
+  @apply bg-claude-bg border border-claude-border rounded-md px-3 py-2 text-claude-text placeholder-claude-text-secondary focus:border-claude-accent focus:ring-1 focus:ring-claude-accent outline-none;
+}
+
+/* Badge */
+.badge {
+  @apply px-2 py-0.5 text-xs rounded-full font-medium;
+}
+
+.badge-success {
+  @apply bg-green-500/20 text-green-400;
+}
+
+.badge-warning {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+.badge-error {
+  @apply bg-red-500/20 text-red-400;
+}
+
+/* Sidebar item */
+.sidebar-item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-md text-claude-text-secondary hover:text-claude-text hover:bg-claude-surface transition-colors cursor-pointer relative;
+}
+
+.sidebar-item.active {
+  @apply bg-claude-surface text-claude-text;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Section header */
+.section-header {
+  @apply flex items-center justify-between px-3 py-2 text-xs font-semibold text-claude-text-secondary uppercase tracking-wider;
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
+}

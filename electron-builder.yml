@@ -1,0 +1,111 @@
+# electron-builder configuration
+# https://www.electron.build/configuration/configuration
+
+appId: com.9000labs.code
+productName: 9000 Code
+copyright: Copyright (c) 2025 9000labs
+
+# Directories
+directories:
+  output: release
+  buildResources: build
+
+# Files to include
+files:
+  - dist/**/*
+  - node_modules/**/*
+  - "!node_modules/**/*.{md,markdown,txt,ts,map}"
+  - "!node_modules/**/{test,tests,__tests__,example,examples}/**"
+  - "!node_modules/.cache/**"
+  - "!**/*.{md,markdown}"
+  - "!**/LICENSE*"
+  - "!**/*.d.ts"
+
+# ASAR packaging (improves performance and protects source)
+asar: true
+asarUnpack:
+  - "**/*.node"
+  - "**/node_modules/@lydell/node-pty/**"
+
+# Compression
+compression: normal
+
+# Windows configuration
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  icon: build/icon.ico
+  artifactName: "${productName}-${version}-${arch}-Setup.${ext}"
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 9000 Code
+  license: LICENSE
+
+portable:
+  artifactName: "${productName}-${version}-${arch}-Portable.${ext}"
+
+# macOS configuration
+mac:
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+    - target: zip
+      arch: [x64, arm64]
+  icon: build/icon.icns
+  category: public.app-category.developer-tools
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  hardenedRuntime: true
+  gatekeeperAssess: false
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+# Linux configuration
+linux:
+  target:
+    - target: AppImage
+      arch: [x64]
+    - target: deb
+      arch: [x64]
+  icon: build/icons
+  category: Development
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  maintainer: 9000labs <contact@9000labs.com>
+  synopsis: Desktop environment for Claude Code CLI
+  description: >
+    9000 Code provides an integrated terminal environment for Claude Code CLI
+    with session management, skill browsing, agent configuration, and more.
+
+# Publish configuration (for auto-update)
+# Uncomment when ready for releases
+# publish:
+#   provider: github
+#   owner: 9000labs
+#   repo: 9000-code
+#   releaseType: release
+
+# Extra resources
+extraResources:
+  - from: LICENSE
+    to: LICENSE
+  - from: LICENSE-AGPL
+    to: LICENSE-AGPL
+
+# Before build hook
+beforeBuild: scripts/beforeBuild.js

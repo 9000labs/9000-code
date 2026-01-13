@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist/main",
+    "rootDir": "src",
+    "target": "ES2020"
+  },
+  "include": ["src/main/**/*", "src/shared/**/*"]
+}
